@@ -1,0 +1,15 @@
+.announcement-bar {
+  background: var(--color-navy-deep);
+  padding: 0.5rem var(--space-md);
+  text-align: center;
+}
+
+.announcement-bar__text {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}

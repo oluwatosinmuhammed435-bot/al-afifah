@@ -1,0 +1,58 @@
+.brand-statement {
+  background: var(--color-navy-deep);
+  padding: var(--space-5xl) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-statement::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(18, 62, 130, 0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brand-statement__inner {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-statement__accent {
+  width: 48px;
+  height: 2px;
+  background: var(--color-gold);
+  margin: 0 auto var(--space-2xl);
+}
+
+.brand-statement__accent--bottom {
+  margin: var(--space-2xl) auto 0;
+}
+
+.brand-statement__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.brand-statement__sub {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: var(--space-lg);
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .brand-statement {
+    padding: var(--space-3xl) 0;
+  }
+}

@@ -1,0 +1,147 @@
+.collections {
+  background: var(--color-cream);
+}
+
+.collections__header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.collections__header .gold-divider {
+  margin: var(--space-md) auto var(--space-lg);
+}
+
+.collections__header .section-subtext {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+/* ── Grid ── */
+.collections__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+/* Let last 2 items center when 5 items in a 3-col grid */
+.collections__grid .collection-card:nth-child(4) {
+  grid-column: 1 / 2;
+}
+
+/* ── Card ── */
+.collection-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-white);
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--duration-base) var(--ease-out),
+              box-shadow var(--duration-base) var(--ease-out);
+}
+
+.collection-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* ── Image ── */
+.collection-card__image-wrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-cream);
+}
+
+.collection-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: var(--space-lg);
+  transition: transform var(--duration-slow) var(--ease-out);
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.collection-card:hover .collection-card__image {
+  transform: scale(1.06);
+}
+
+.collection-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 40, 88, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.collection-card:hover .collection-card__overlay {
+  opacity: 1;
+}
+
+.collection-card__cta-text {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ── Body ── */
+.collection-card__body {
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+}
+
+.collection-card__name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-navy-deep);
+  margin-bottom: var(--space-xs);
+}
+
+.collection-card__desc {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.65;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .collections__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .collections__grid .collection-card:nth-child(4) {
+    grid-column: auto;
+  }
+
+  /* Center last item if odd count */
+  .collections__grid .collection-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .collections__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .collections__grid .collection-card:last-child:nth-child(odd) {
+    max-width: none;
+  }
+}
