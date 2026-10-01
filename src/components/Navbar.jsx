@@ -48,10 +48,9 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <a
-          href={getWhatsAppUrl()}
+          href="#featured"
           className="btn btn--primary btn--sm navbar__cta"
-          target="_blank"
-          rel="noopener noreferrer"
+          onClick={handleNavClick}
         >
           Shop Collection
         </a>
@@ -79,10 +78,8 @@ export default function Navbar() {
           ))}
         </ul>
         <a
-          href={getWhatsAppUrl()}
+          href="#featured"
           className="btn btn--primary navbar__mobile-cta"
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={handleNavClick}
         >
           Shop Collection

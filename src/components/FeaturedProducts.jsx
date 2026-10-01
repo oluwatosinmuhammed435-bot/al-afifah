@@ -9,7 +9,7 @@ export default function FeaturedProducts() {
   const [gridRef, gridVisible] = useScrollReveal({ threshold: 0.05 });
 
   return (
-    <section className="featured section" aria-label="Featured Products">
+    <section className="featured section" id="featured" aria-label="Featured Products">
       <div className="container">
         {/* Header */}
         <div
