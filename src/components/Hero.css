@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   HERO — Cinematic, Higgsfield-quality aesthetic
+   HERO — Cinematic Full-Screen Aesthetic
    ═══════════════════════════════════════════════ */
 
 .hero {
@@ -9,43 +9,38 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: var(--color-ivory);
+  background: var(--color-navy-deep);
 }
 
 /* ── Background Layers ── */
-.hero__bg {
+.hero__bg-image {
   position: absolute;
   inset: 0;
   z-index: 0;
-  pointer-events: none;
+  background-image: url('/images/hero-bg.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  animation: hero-zoom 20s ease-out forwards;
 }
 
-.hero__bg-gradient {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 10% 90%, rgba(18, 62, 130, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 85% 20%, rgba(198, 166, 107, 0.06) 0%, transparent 50%);
+@keyframes hero-zoom {
+  0% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-.hero__bg-pattern {
+.hero__bg-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.025;
-  background-image: 
-    linear-gradient(0deg, var(--color-navy) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-navy) 1px, transparent 1px);
-  background-size: 80px 80px;
+  /* Dark gradient to ensure text readability on the left, fading out towards the model on the right */
+  background: linear-gradient(to right, rgba(10, 40, 88, 0.8) 0%, rgba(10, 40, 88, 0.3) 40%, transparent 70%);
 }
 
 /* ── Layout ── */
 .hero__inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4xl);
-  align-items: center;
+  width: 100%;
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-3xl);
 }
@@ -57,6 +52,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+  max-width: 600px;
 }
 
 /* ── Eyebrow ── */
@@ -98,12 +94,13 @@
 /* ── Heading — cinematic staggered reveal ── */
 .hero__heading {
   font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 6vw, 4.5rem);
-  font-weight: 700;
-  line-height: 1.04;
-  color: var(--color-navy-deep);
-  letter-spacing: -0.02em;
-  margin: var(--space-sm) 0;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--color-white);
+  letter-spacing: -0.01em;
+  margin: var(--space-xs) 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero__heading-line {
@@ -145,13 +142,14 @@
 
 /* ── Description ── */
 .hero__description {
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  color: #555;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
   max-width: 440px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.7s ease 0.6s, transform 0.7s ease 0.6s;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .hero__content--visible .hero__description {
@@ -164,7 +162,7 @@
   display: flex;
   gap: var(--space-md);
   flex-wrap: wrap;
-  margin-top: var(--space-xs);
+  margin-top: var(--space-sm);
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.7s ease 0.75s, transform 0.7s ease 0.75s;
@@ -179,6 +177,17 @@
   text-decoration: none;
 }
 
+.hero__btn--outline {
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero__btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+}
+
 /* ── Philosophy quote ── */
 .hero__philosophy {
   font-family: var(--font-sans);
@@ -188,9 +197,9 @@
   text-transform: uppercase;
   color: var(--color-gold);
   line-height: 1.8;
-  margin-top: var(--space-lg);
+  margin-top: var(--space-xl);
   padding-top: var(--space-lg);
-  border-top: 1px solid rgba(198, 166, 107, 0.25);
+  border-top: 1px solid rgba(198, 166, 107, 0.3);
   max-width: 360px;
   opacity: 0;
   transition: opacity 0.7s ease 0.9s;
@@ -200,106 +209,6 @@
   opacity: 1;
 }
 
-/* ═══════════════════════════════════════
-   RIGHT: Cinematic Product Showcase
-   ═══════════════════════════════════════ */
-.hero__showcase {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-xl);
-  opacity: 0;
-  transform: translateY(30px) scale(0.97);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
-              transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
-}
-
-.hero__showcase--visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* ── Flyer Frame ── */
-.hero__flyer-frame {
-  position: relative;
-  max-width: 440px;
-  width: 100%;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow:
-    0 20px 60px rgba(10, 40, 88, 0.18),
-    0 8px 24px rgba(10, 40, 88, 0.08);
-}
-
-.hero__flyer-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-.hero__flyer-border {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-xl);
-  border: 1px solid rgba(198, 166, 107, 0.2);
-  pointer-events: none;
-}
-
-/* ── Floating Product Carousel Strip ── */
-.hero__product-strip {
-  display: flex;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  background: var(--color-white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-}
-
-.hero__product-thumb {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: var(--space-sm);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--duration-base) var(--ease-out);
-  border: 2px solid transparent;
-  outline: none;
-}
-
-.hero__product-thumb:hover {
-  background: var(--color-cream);
-}
-
-.hero__product-thumb--active {
-  border-color: var(--color-gold);
-  background: var(--color-cream);
-}
-
-.hero__product-thumb-img {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-sm);
-  object-fit: cover;
-  image-rendering: -webkit-optimize-contrast;
-}
-
-.hero__product-thumb-label {
-  font-family: var(--font-sans);
-  font-size: 0.5625rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-charcoal);
-  white-space: nowrap;
-}
-
-.hero__product-thumb--active .hero__product-thumb-label {
-  color: var(--color-navy);
-}
 
 /* ═══════════════════════════════════════
    SCROLL INDICATOR
@@ -323,11 +232,12 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-white);
+  opacity: 0.7;
 }
 
 .hero__scroll-icon {
-  color: var(--color-gold);
+  color: var(--color-white);
   opacity: 0.7;
 }
 
@@ -339,31 +249,32 @@
 /* ═══════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .hero__inner {
-    gap: var(--space-2xl);
-  }
-
-  .hero__flyer-frame {
-    max-width: 380px;
-  }
-}
-
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
-    padding: var(--space-3xl) 0 var(--space-4xl);
+    min-height: 90vh;
+    padding: var(--space-3xl) 0;
+  }
+
+  .hero__bg-overlay {
+    background: linear-gradient(to bottom, rgba(10, 40, 88, 0.5) 0%, rgba(10, 40, 88, 0.8) 60%, rgba(10, 40, 88, 0.95) 100%);
+  }
+  
+  .hero__bg-image {
+    background-position: 70% center;
   }
 
   .hero__inner {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding-top: 30vh; /* Push content down to show face */
   }
 
   .hero__content {
     align-items: center;
-    order: 1;
+    text-align: center;
+    margin: 0 auto;
   }
 
   .hero__eyebrow-line {
@@ -376,25 +287,12 @@
 
   .hero__actions {
     justify-content: center;
+    width: 100%;
   }
 
   .hero__philosophy {
     margin: var(--space-lg) auto 0;
     text-align: center;
-  }
-
-  .hero__showcase {
-    order: 2;
-  }
-
-  .hero__flyer-frame {
-    max-width: 340px;
-  }
-
-  .hero__product-strip {
-    overflow-x: auto;
-    max-width: 100%;
-    -webkit-overflow-scrolling: touch;
   }
 
   .hero__scroll-indicator {
@@ -403,27 +301,13 @@
 }
 
 @media (max-width: 480px) {
-  .hero {
-    padding: var(--space-2xl) 0 var(--space-3xl);
+  .hero__heading {
+    font-size: 2.75rem;
   }
-
+  
   .hero__actions {
     flex-direction: column;
-    width: 100%;
     align-items: stretch;
-  }
-
-  .hero__flyer-frame {
-    max-width: 300px;
-  }
-
-  .hero__product-thumb-img {
-    width: 44px;
-    height: 44px;
-  }
-
-  .hero__product-thumb {
-    padding: 6px;
   }
 }
 
@@ -436,8 +320,7 @@
   .hero__heading-line--3,
   .hero__description,
   .hero__actions,
-  .hero__philosophy,
-  .hero__showcase {
+  .hero__philosophy {
     opacity: 1;
     transform: none;
     transition: none;
@@ -445,6 +328,10 @@
 
   .hero__eyebrow-bar {
     width: 40px;
+  }
+
+  .hero__bg-image {
+    animation: none;
   }
 
   .hero__scroll-indicator {
