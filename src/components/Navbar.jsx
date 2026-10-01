@@ -66,7 +66,14 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile menu backdrop */}
+      <div 
+        className={`navbar__backdrop ${mobileOpen ? 'navbar__backdrop--open' : ''}`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Mobile menu sidebar */}
       <div className={`navbar__mobile ${mobileOpen ? 'navbar__mobile--open' : ''}`}>
         <ul className="navbar__mobile-links">
           {NAV_LINKS.map((link, i) => (
